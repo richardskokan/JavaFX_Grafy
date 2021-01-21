@@ -1,11 +1,17 @@
 package Controllers;
 
+import Resources.thisThingsData;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class GraphController {
     //Scene switching
@@ -22,20 +28,21 @@ public class GraphController {
     }
 
     //Data processing
-    //ARRAY/OBJECT PLACEHOLDER
-    public int [] data;
+    public ObservableList<thisThingsData> data;
     public TableView contentTable;
 
-    public void setData(int [] data) {
+    public void setData(ObservableList<thisThingsData> data) {
         this.data = data;
     }
 
     public void run() {
-        //FULL METHOD PLACEHOLDER
-        if (data != null) {
-            for (int datum : data) {
-                System.out.println(datum);
-            }
-        } else System.out.println("Data is empty");
+        contentTable.setItems(data);
+
+        TableColumn<thisThingsData, String> values = new TableColumn<>("Value");
+        values.setCellValueFactory(new PropertyValueFactory<>(data.get(0).valueProperty().getName()));
+        TableColumn<thisThingsData, String> amounts = new TableColumn<>("Amount");
+        amounts.setCellValueFactory(new PropertyValueFactory<>(String.valueOf(data.get(0).amountProperty().getName())));
+
+        contentTable.getColumns().setAll(values, amounts);
     }
 }
