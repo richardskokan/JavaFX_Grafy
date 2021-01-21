@@ -33,8 +33,8 @@ public class GraphController {
     public void run() {
         //FULL METHOD PLACEHOLDER
         if (data != null) {
-            for (int i = 0; i < data.length; i++) {
-                System.out.println(data [i]);
+            for (int datum : data) {
+                System.out.println(datum);
             }
         } else System.out.println("Data is empty");
     }
