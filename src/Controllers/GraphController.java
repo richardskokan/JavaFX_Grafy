@@ -22,6 +22,7 @@ public class GraphController {
     }
 
     //Data processing
+    //ARRAY/OBJECT PLACEHOLDER
     public int [] data;
     public TableView contentTable;
 
@@ -30,6 +31,7 @@ public class GraphController {
     }
 
     public void run() {
+        //FULL METHOD PLACEHOLDER
         if (data != null) {
             for (int i = 0; i < data.length; i++) {
                 System.out.println(data [i]);

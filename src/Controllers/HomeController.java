@@ -20,6 +20,7 @@ public class HomeController {
     }
 
     public void openGraphScene(ActionEvent actionEvent) {
+        //ARRAY/OBJECT PLACEHOLDER
         int [] data = generateData();
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -33,6 +34,7 @@ public class HomeController {
     public TextArea textArea;
 
     private int [] generateData() {
+        //FULL METHOD PLACEHOLDER
         int [] data = new int [1];
         data [0] = Integer.parseInt(textArea.getText());
 
