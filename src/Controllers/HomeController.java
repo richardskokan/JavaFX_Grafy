@@ -47,7 +47,6 @@ public class HomeController {
         for (int i = 0; i < 25; i++) {
             Random rn = new Random();
             int number = rn.nextInt(6)+1;
-            System.out.println(number);
             for (thisThingsData x : data) {
                 if (x.getValue().equals(String.valueOf(number))) x.appendAmount();
             }

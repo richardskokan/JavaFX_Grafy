@@ -1,17 +1,17 @@
 package Controllers;
 
 import Resources.thisThingsData;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class GraphController {
     //Scene switching
@@ -30,12 +30,14 @@ public class GraphController {
     //Data processing
     public ObservableList<thisThingsData> data;
     public TableView contentTable;
+    public BarChart barChart;
 
     public void setData(ObservableList<thisThingsData> data) {
         this.data = data;
     }
 
     public void run() {
+        //Setting table data
         contentTable.setItems(data);
 
         TableColumn<thisThingsData, String> values = new TableColumn<>("Value");
@@ -44,5 +46,15 @@ public class GraphController {
         amounts.setCellValueFactory(new PropertyValueFactory<>(String.valueOf(data.get(0).amountProperty().getName())));
 
         contentTable.getColumns().setAll(values, amounts);
+
+        //Setting chart data
+        ObservableList<XYChart.Series<String, Integer>> chartData = FXCollections.observableArrayList();
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName("Amount");
+        for (thisThingsData x : data) {
+            series.getData().add(new XYChart.Data(x.getValue(), x.getAmount()));
+        }
+        chartData.add(series);
+        barChart.setData(chartData);
     }
 }
