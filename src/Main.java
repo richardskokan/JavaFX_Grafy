@@ -29,13 +29,15 @@ public class Main extends Application {
 
         //Parsing home scene to graph scene so they can switch
         GraphController graphController = graphLoader.getController();
-        graphController.setHomeScene(homeScene);
-
+        graphController.setHomeScene(homeScene, homeController);
+        
         //Setting basic stage settings
         primaryStage.setScene(homeScene);
         primaryStage.setTitle("JavaFX - Grafy");
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(500);
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(500);
         primaryStage.getIcons().add(new Image("Resources/icon.png"));
         primaryStage.show();
     }

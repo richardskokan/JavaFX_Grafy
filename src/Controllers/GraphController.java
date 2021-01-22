@@ -17,9 +17,11 @@ public class GraphController {
     //Scene switching
     public Button backButton;
     private Scene homeScene;
+    private HomeController homeController;
 
-    public void setHomeScene(Scene homeScene) {
+    public void setHomeScene(Scene homeScene, HomeController homeController) {
         this.homeScene = homeScene;
+        this.homeController = homeController;
     }
 
     public void openHomeScene(ActionEvent actionEvent) {
@@ -37,6 +39,9 @@ public class GraphController {
     }
 
     public void run() {
+        //Allowing usage of Return button
+        homeController.allowReturn();
+
         //Setting table data
         contentTable.setItems(data);
 
