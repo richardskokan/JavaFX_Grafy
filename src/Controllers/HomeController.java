@@ -50,6 +50,8 @@ public class HomeController implements Initializable {
     public TextField numberOfBalls;
     public TextField numberOfCollumns;
 
+    private Random rn = new Random();
+
     private ObservableList<thisThingsData> generateData() {
         ObservableList<thisThingsData> data = FXCollections.observableArrayList();
 
@@ -69,13 +71,13 @@ public class HomeController implements Initializable {
         ObservableList<thisThingsData> data = FXCollections.observableArrayList();
         data.clear();
 
-        for (int i = 1 * numberOfDice; i < numberOfDiceSides * numberOfDice + 1; i++) {
+        for (int i = numberOfDice; i < numberOfDiceSides * numberOfDice + 1; i++) {
             thisThingsData temp = new thisThingsData(String.valueOf(i));
             data.add(temp);
         }
 
         for (int i = 0; i < numberOfTries; i++) {
-            Random rn = new Random();
+
             int number = 0;
 
             for (int j = 0; j < numberOfDice; j++) {
@@ -94,13 +96,20 @@ public class HomeController implements Initializable {
         ObservableList<thisThingsData> data = FXCollections.observableArrayList();
         data.clear();
 
-        for (int i = 0; i < numberOfColumns; i++) {
+        for (int i = 1; i < numberOfColumns + 1; i++) {
             thisThingsData temp = new thisThingsData(String.valueOf(i));
             data.add(temp);
         }
 
         for (int i = 0; i < numberOfBalls; i++) {
+            int finalPosition = 1;
+            for (int j = 0; j < numberOfColumns - 1; j++) {
+                if (rn.nextBoolean()) finalPosition++;
+            }
 
+            for (thisThingsData x : data) {
+                if (x.getValue().equals(String.valueOf(finalPosition))) x.appendAmount();
+            }
         }
 
         return data;
@@ -132,13 +141,15 @@ public class HomeController implements Initializable {
 
     public void checkRunnable() {
         if (mode.getText().equals("Dice")) {
-            if (numberOfDice.getText().matches("\\d\\d*") && numberOfDiceSides.getText().matches("\\d\\d*") && numberOfThrows.getText().matches("\\d\\d*")) {
+            if (numberOfDice.getText().matches("\\d\\d*") && numberOfDiceSides.getText().matches("\\d\\d*") && numberOfThrows.getText().matches("\\d\\d*")
+                    && Integer.parseInt(numberOfDice.getText()) > 0 && Integer.parseInt(numberOfDiceSides.getText()) > 0 && Integer.parseInt(numberOfThrows.getText()) > 0) {
                 simButton.setDisable(false);
             } else {
                 simButton.setDisable(true);
             }
         } else {
-            if (numberOfBalls.getText().matches("\\d\\d*") && numberOfCollumns.getText().matches("\\d\\d*")) {
+            if (numberOfBalls.getText().matches("\\d\\d*") && numberOfCollumns.getText().matches("\\d\\d*")
+                    && Integer.parseInt(numberOfBalls.getText()) > 0 && Integer.parseInt(numberOfCollumns.getText()) > 1) {
                 simButton.setDisable(false);
             } else {
                 simButton.setDisable(true);
