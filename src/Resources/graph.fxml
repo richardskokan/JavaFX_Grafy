@@ -5,13 +5,12 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GraphController">
-   <children>
-      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openHomeScene" prefHeight="25.0" prefWidth="250.0" text="Back" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <TableView fx:id="contentTable" fixedCellSize="0.0" layoutX="14.0" layoutY="50.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
-         <columnResizePolicy>
+    <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openHomeScene" prefHeight="25.0" prefWidth="250.0" text="Back" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+    <TableView fx:id="contentTable" fixedCellSize="0.0" layoutX="14.0" layoutY="50.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
+        <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
+        </columnResizePolicy>
+    </TableView>
       <BarChart fx:id="barChart" animated="false" layoutX="286.0" layoutY="14.0" legendVisible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="286.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -20,5 +19,4 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-   </children>
 </AnchorPane>

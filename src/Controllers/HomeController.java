@@ -48,9 +48,9 @@ public class HomeController implements Initializable {
     public TextField numberOfDiceSides;
     public TextField numberOfThrows;
     public TextField numberOfBalls;
-    public TextField numberOfCollumns;
+    public TextField numberOfColumns;
 
-    private Random rn = new Random();
+    private final Random rn = new Random();
 
     private ObservableList<thisThingsData> generateData() {
         ObservableList<thisThingsData> data = FXCollections.observableArrayList();
@@ -60,7 +60,7 @@ public class HomeController implements Initializable {
                 data = diceSimulation(Integer.parseInt(numberOfDice.getText()), Integer.parseInt(numberOfDiceSides.getText()), Integer.parseInt(numberOfThrows.getText()));
                 break;
             case "Galton Board":
-                data = galtonBoardSimulation(Integer.parseInt(numberOfBalls.getText()), Integer.parseInt(numberOfCollumns.getText()));
+                data = galtonBoardSimulation(Integer.parseInt(numberOfBalls.getText()), Integer.parseInt(numberOfColumns.getText()));
                 break;
         }
 
@@ -124,7 +124,7 @@ public class HomeController implements Initializable {
             numberOfThrows.setDisable(true);
 
             numberOfBalls.setDisable(false);
-            numberOfCollumns.setDisable(false);
+            numberOfColumns.setDisable(false);
         } else {
             mode.setText("Dice");
 
@@ -133,7 +133,7 @@ public class HomeController implements Initializable {
             numberOfThrows.setDisable(false);
 
             numberOfBalls.setDisable(true);
-            numberOfCollumns.setDisable(true);
+            numberOfColumns.setDisable(true);
         }
 
         checkRunnable();
@@ -141,19 +141,11 @@ public class HomeController implements Initializable {
 
     public void checkRunnable() {
         if (mode.getText().equals("Dice")) {
-            if (numberOfDice.getText().matches("\\d\\d*") && numberOfDiceSides.getText().matches("\\d\\d*") && numberOfThrows.getText().matches("\\d\\d*")
-                    && Integer.parseInt(numberOfDice.getText()) > 0 && Integer.parseInt(numberOfDiceSides.getText()) > 0 && Integer.parseInt(numberOfThrows.getText()) > 0) {
-                simButton.setDisable(false);
-            } else {
-                simButton.setDisable(true);
-            }
+            simButton.setDisable(!numberOfDice.getText().matches("\\d\\d*") || !numberOfDiceSides.getText().matches("\\d\\d*") || !numberOfThrows.getText().matches("\\d\\d*")
+                    || Integer.parseInt(numberOfDice.getText()) <= 0 || Integer.parseInt(numberOfDiceSides.getText()) <= 0 || Integer.parseInt(numberOfThrows.getText()) <= 0);
         } else {
-            if (numberOfBalls.getText().matches("\\d\\d*") && numberOfCollumns.getText().matches("\\d\\d*")
-                    && Integer.parseInt(numberOfBalls.getText()) > 0 && Integer.parseInt(numberOfCollumns.getText()) > 1) {
-                simButton.setDisable(false);
-            } else {
-                simButton.setDisable(true);
-            }
+            simButton.setDisable(!numberOfBalls.getText().matches("\\d\\d*") || !numberOfColumns.getText().matches("\\d\\d*")
+                    || Integer.parseInt(numberOfBalls.getText()) <= 0 || Integer.parseInt(numberOfColumns.getText()) <= 1);
         }
     }
 
@@ -163,7 +155,7 @@ public class HomeController implements Initializable {
         retButton.setDisable(true);
 
         numberOfBalls.setDisable(true);
-        numberOfCollumns.setDisable(true);
+        numberOfColumns.setDisable(true);
     }
 
     public void allowReturn() {
